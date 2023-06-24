@@ -1,6 +1,7 @@
 package com.example.foodorderapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodorderapp.DetailActivity;
 import com.example.foodorderapp.Models.OrdersModel;
 import com.example.foodorderapp.R;
 
@@ -40,6 +42,16 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder
         holder.soldItemName.setText(model.getSoldItem());
         holder.orderNumber.setText(model.getOrderNumber());
         holder.price.setText(model.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("id", Integer.parseInt(model.getOrderNumber()));
+                intent.putExtra("type", 2);
+                context.startActivity(intent);
+            }
+        });
 
 
     }
